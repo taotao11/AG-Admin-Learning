@@ -5,11 +5,7 @@ spring:
         date-format: yyyy-MM-dd HH:mm:ss
         time-zone: GMT+8
         default-property-inclusion: non_null
-    redis:
-        database: 1
-        host: 127.0.0.1
-        pool:
-            max-active: 20
+
 server:
     port: 8765 #启动端口
 #
@@ -47,7 +43,9 @@ eureka:
     instance:
         statusPageUrlPath: /info
         healthCheckUrlPath: /health
-        # docker 部署开启
+        lease-renewal-interval-in-seconds: 30
+        lease-expiration-duration-in-seconds: 90
+        # 多网卡制定IP，docker部署推荐
 #        prefer-ip-address: true
 #        ip-address: 127.0.0.1
     client:

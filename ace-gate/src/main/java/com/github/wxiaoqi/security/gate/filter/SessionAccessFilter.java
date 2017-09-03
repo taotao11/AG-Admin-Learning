@@ -1,6 +1,5 @@
 package com.github.wxiaoqi.security.gate.filter;
 
-import com.alibaba.fastjson.JSON;
 import com.github.wxiaoqi.security.common.msg.auth.TokenErrorResponse;
 import com.github.wxiaoqi.security.common.util.ClientUtil;
 import com.google.common.base.Predicate;
