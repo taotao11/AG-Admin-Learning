@@ -1,6 +1,7 @@
 package com.github.wxiaoqi.security.gate;
 
 
+import com.netflix.zuul.exception.ZuulException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -19,4 +20,5 @@ public class GateBootstrap {
     public static void main(String[] args) {
         SpringApplication.run(GateBootstrap.class, args);
     }
+
 }

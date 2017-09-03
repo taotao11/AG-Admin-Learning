@@ -7,6 +7,8 @@ import com.netflix.eureka.EurekaServerContextHolder;
 import com.netflix.eureka.registry.PeerAwareInstanceRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.eureka.server.event.EurekaInstanceCanceledEvent;
 import org.springframework.cloud.netflix.eureka.server.event.EurekaInstanceRegisteredEvent;
 import org.springframework.cloud.netflix.eureka.server.event.EurekaInstanceRenewedEvent;
@@ -25,12 +27,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by ace on 2017/7/8.
  */
 @Configuration
-@Slf4j
 @EnableScheduling
 public class EurekaInstanceCanceledListener implements ApplicationListener {
+    private Logger log = LoggerFactory.getLogger(EurekaInstanceCanceledListener.class);
     @Override
     public void onApplicationEvent(ApplicationEvent applicationEvent) {
-        // 服务挂掉自动通知
+        // 服务挂掉事件
         if (applicationEvent instanceof EurekaInstanceCanceledEvent) {
             EurekaInstanceCanceledEvent event = (EurekaInstanceCanceledEvent) applicationEvent;
             // 获取当前Eureka实例中的节点信息
@@ -41,6 +43,7 @@ public class EurekaInstanceCanceledListener implements ApplicationListener {
                 registeredApplication.getInstances().forEach((instance) -> {
                     if (instance.getInstanceId().equals(event.getServerId())) {
                         log.info("服务：" + instance.getAppName() + " 挂啦。。。");
+                        // // TODO: 2017/9/3 扩展消息提醒 邮件、手机短信、微信等
                     }
                 });
             });
