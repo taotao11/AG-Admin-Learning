@@ -14,7 +14,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableEurekaClient
-//@EnableZuulProxy
+@EnableZuulProxy
 public class GateBootstrap {
     public static void main(String[] args) {
         SpringApplication.run(GateBootstrap.class, args);
