@@ -1,8 +1,10 @@
 spring:
     cloud:
         config:
+            discovery:
+               service-id:
+               enabled: true
             label: master
-            uri: http://localhost:8750
             name: gate
             profile: dev
 

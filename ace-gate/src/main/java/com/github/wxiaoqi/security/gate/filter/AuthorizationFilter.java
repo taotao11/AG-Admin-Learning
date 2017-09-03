@@ -26,9 +26,9 @@ import java.util.regex.Pattern;
  */
 @Component
 @Slf4j
-public class SessionAccessFilter extends ZuulFilter {
+public class AuthorizationFilter extends ZuulFilter {
 
-    public SessionAccessFilter() {
+    public AuthorizationFilter() {
         super();
     }
 
@@ -61,6 +61,7 @@ public class SessionAccessFilter extends ZuulFilter {
     private void setFailedRequest(String body, int code) {
         log.debug("Reporting error ({}): {}", code, body);
         RequestContext ctx = RequestContext.getCurrentContext();
+
         ctx.setResponseStatusCode(code);
         if (ctx.getResponseBody() == null) {
             ctx.setResponseBody(body);
