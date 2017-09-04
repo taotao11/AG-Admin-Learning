@@ -38,6 +38,8 @@ public class PreFilter extends ZuulFilter {
 
     @Override
     public Object run() {
+        log.info("pre……");
+        // TODO: 2017/9/4  身份不通过跟oauth、jwt  40101 
         RequestContext ctx = RequestContext.getCurrentContext();
         ctx.put("start", System.currentTimeMillis());
         return null;

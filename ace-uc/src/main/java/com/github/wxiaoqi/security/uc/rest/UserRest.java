@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("user")
 public class UserRest {
-    @Value("${language.en}")
+    @Value("${language.en:Local Hello World}")
     private String language;
 
     @RequestMapping("test")
     @ResponseBody
     public String test() throws InterruptedException {
-//        Thread.sleep(7000);
+        Thread.sleep(7000);
         return language;
     }
 }

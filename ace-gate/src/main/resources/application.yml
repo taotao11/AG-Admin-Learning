@@ -10,34 +10,38 @@ server:
     port: 8765 #启动端口
 #
 zuul:
+#/api/uc/user/test --> user-center   /user/test
+#/api/uc/user/test --> user-center   /uc/user/test
+#/api/admin/user/test   /admin/user/test stripPrefix:false
   prefix: /api #为zuul设置一个公共的前缀
   routes:
     uc:
       path: /uc/**
       serviceId: user-center
+#      stripPrefix: false  # 不移除前缀 uc
 
 
-#ribbon:
-#  eureka:
-#    enabled: true
-#  ReadTimeout: 60000
-#  ConnectTimeout: 60000
-#  MaxAutoRetries: 0
-#  MaxAutoRetriesNextServer: 1
-#  OkToRetryOnAllOperations: false
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
 
-#hystrix:
-#  threadpool:
-#    default:
-#      coreSize: 1000 ##并发执行的最大线程数，默认10
-#      maxQueueSize: 1000 ##BlockingQueue的最大队列数
-#      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
-#  command:
-#    default:
-#      execution:
-#        isolation:
-#          thread:
-#            timeoutInMilliseconds: 5000
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ##并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ##BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
 
 eureka:
     instance:
